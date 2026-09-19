@@ -68,7 +68,7 @@ async def answer_question(
     try:
         weather = await get_weather(geo.latitude, geo.longitude)
     except Exception as exc:
-        errors.append(f"Weather service unavailable: {type(exc).__name__}")
+        errors.append(f"Weather service unavailable: {type(exc).__name__}:{exc}")
 
     try:
         marine = await get_marine(geo.latitude, geo.longitude)
