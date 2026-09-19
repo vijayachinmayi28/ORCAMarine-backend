@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     app_name: str = "ORCAMarine API"
-    demo_mode: bool = True
+    demo_mode: bool = False
     http_timeout_seconds: float = 8.0
 
     nominatim_url: str = "https://nominatim.openstreetmap.org/search"
