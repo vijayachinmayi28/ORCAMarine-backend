@@ -16,5 +16,15 @@ async def get_json(
         headers=headers,
     ) as client:
         response = await client.get(url, params=params)
-        response.raise_for_status()
+
+        try:
+            response.raise_for_status()
+        except httpx.HTTPStatusError as exc:
+            raise httpx.HTTPStatusError(
+                f"HTTP {exc.response.status_code}: "
+                f"{exc.response.text[:200]}",
+                request=exc.request,
+                response=exc.response,
+            ) from exc
+
         return response.json()
